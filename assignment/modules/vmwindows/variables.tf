@@ -42,7 +42,7 @@ variable "windows_offer" {
 }
 
 variable "windows_sku" {
-  default = "2019-Datacenter"
+  default = "2016-Datacenter"
 }
 
 variable "windows_version" {
