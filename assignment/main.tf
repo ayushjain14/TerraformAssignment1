@@ -75,6 +75,7 @@ module "loadbalancer" {
   location       = module.rgroup.rg_group.location
   resource_group = module.rgroup.rg_group.name
   subnet1_id     = module.network.subnet1_id
+  linux_nic      = module.vmlinux.linux_nic
   depends_on = [
     module.network,
     module.vmlinux
