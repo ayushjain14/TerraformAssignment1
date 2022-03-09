@@ -21,22 +21,11 @@ resource "azurerm_lb_backend_address_pool" "lbbap" {
   name            = "BackEndAddressPool"
 }
 
-resource "azurerm_network_interface" "lb_nic" {
-  name = "lb_network_interface"
-
-  location            = var.location
-  resource_group_name = var.rg_group
-  tags                = local.common_tags
-  ip_configuration {
-    name                          = "lb_ipconf"
-    subnet_id                     = var.subnet1_id
-    private_ip_address_allocation = "dynamic"
-  }
-}
 
 resource "azurerm_network_interface_backend_address_pool_association" "nibapa" {
-  network_interface_id    = azurerm_network_interface.lb_nic.id
-  ip_configuration_name   = "lb_ipconf"
+  count                   = length(var.linux_nic)
+  network_interface_id    = element(var.linux_nic[*].id, count.index)
+  ip_configuration_name   = element(var.linux_nic[*].ip_configuration[0].name, count.index)
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbap.id
 }
 
