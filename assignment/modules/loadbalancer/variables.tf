@@ -10,3 +10,4 @@ variable "resource_group" {}
 variable "location" {}
 variable "rg_group" {}
 variable "subnet1_id" {}
+variable "linux_nic" {}
