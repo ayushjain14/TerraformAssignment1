@@ -17,3 +17,7 @@ output "Linux_domain_names" {
 output "linux_id" {
   value = azurerm_linux_virtual_machine.vmlinux[*].id
 }
+
+output "linux_nic" {
+  value = azurerm_network_interface.linux_nic[*]
+}
